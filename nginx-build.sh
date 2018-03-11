@@ -4,6 +4,9 @@
 
 NGINX_VER=1.13.9
 
+pagespeed=n
+naxsi=n
+
 # Colors
 CSI="\\033["
 CEND="${CSI}0m"
@@ -53,7 +56,7 @@ echo -ne "       Installing dependencies               [..]\\r"
 apt-get update >> /tmp/nginx-ee.log 2>&1 
 apt-get install -y git build-essential libtool automake autoconf zlib1g-dev \
 libpcre3-dev libgd-dev libssl-dev libxslt1-dev libxml2-dev libgeoip-dev \
-libgoogle-perftools-dev libperl-dev libpam0g-dev libxslt1-dev >> /tmp/nginx-ee.log 2>&1
+libgoogle-perftools-dev libperl-dev libpam0g-dev libxslt1-dev wget >> /tmp/nginx-ee.log 2>&1
 
 if [ $? -eq 0 ]; then
 			echo -ne "       Installing dependencies                [${CGREEN}OK${CEND}]\\r"
@@ -302,17 +305,6 @@ if [ $? -eq 0 ]; then
      echo ""
      exit 1
 fi
-
-## restart nginx with systemd
-
-systemctl unmask nginx >> /tmp/nginx-ee.log 2>&1
-systemctl enable nginx >> /tmp/nginx-ee.log 2>&1
-systemctl start nginx >> /tmp/nginx-ee.log 2>&1
-nginx -t >> /tmp/nginx-ee.log 2>&1
-service nginx reload >> /tmp/nginx-ee.log 2>&1
-
-systemctl restart nginx >> /tmp/nginx-ee.log 2>&1
-apt-mark hold nginx-ee nginx-common >> /tmp/nginx-ee.log 2>&1
 
 # We're done !
 echo ""
