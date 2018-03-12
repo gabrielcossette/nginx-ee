@@ -1,6 +1,9 @@
 FROM ubuntu:xenial
 
-RUN apt-get update && apt-get install -y patch
+RUN gpg --keyserver "hkp://pgp.mit.edu" --recv-keys '3050AC3CD2AE6F03' && gpg -a --export --armor '3050AC3CD2AE6F03' | apt-key add -
+RUN sh -c "echo 'deb http://download.opensuse.org/repositories/home:/rtCamp:/EasyEngine/xUbuntu_16.04/ /' >> /etc/apt/sources.list.d/nginx.list"
+
+RUN apt-get update && apt-get install -y patch nginx-custom nginx-ee
 
 COPY nginx-build.sh ./
 RUN ./nginx-build.sh
