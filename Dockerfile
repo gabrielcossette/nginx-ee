@@ -1,11 +1,10 @@
 FROM ubuntu:xenial
 
-
-RUN wget https://download.opensuse.org/repositories/home:/rtCamp:/EasyEngine/xUbuntu_16.04/Release.key && apt-key add Release.key && rm Release.key
+RUN apt-get update && apt-get install -y wget && wget https://download.opensuse.org/repositories/home:/rtCamp:/EasyEngine/xUbuntu_16.04/Release.key && apt-key add Release.key && rm Release.key
 
 RUN sh -c "echo 'deb http://download.opensuse.org/repositories/home:/rtCamp:/EasyEngine/xUbuntu_16.04/ /' >> /etc/apt/sources.list.d/nginx.list"
 
-RUN apt-get update && apt-get install -y patch nginx-custom nginx-ee && rm /etc/nginx/sites-enabled/default
+RUN apt-get install -y patch nginx-custom nginx-ee && rm /etc/nginx/sites-enabled/default
 
 COPY nginx-build.sh ./
 RUN ./nginx-build.sh
