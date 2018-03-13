@@ -10,10 +10,22 @@ COPY nginx-build.sh ./
 RUN ./nginx-build.sh
 
 COPY nginx.conf /etc/nginx/nginx.conf
+
 COPY default.conf /etc/nginx/conf.d/default.conf
-COPY wordpress.conf /etc/nginx/global/wordpress.conf
-COPY restrictions.conf /etc/nginx/global/restrictions.conf
-COPY proxy.conf /etc/nginx/global/proxy.conf
+COPY upstream.conf /etc/nginx/conf.d/upstream.conf
+
+COPY locations.conf /etc/nginx/common/locations.conf
+COPY wpcommon.conf /etc/nginx/common/wpcommon.conf
+COPY proxy.conf /etc/nginx/common/proxy.conf
+
+COPY redis.conf /etc/nginx/common/redis.conf
+COPY redislog.conf /etc/nginx/common/redislog.conf
+
+COPY wpfc.conf /etc/nginx/common/wpfc.conf
+COPY fastcgi.conf /etc/nginx/common/fastcgi.conf
+
+COPY wordpress.conf /etc/nginx/common/wordpress.conf
+
 COPY docker-entrypoint.sh /entrypoint.sh
 
 COPY entrypoint.patch ./
