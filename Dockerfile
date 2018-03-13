@@ -12,6 +12,7 @@ RUN ./nginx-build.sh
 COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY default.conf /etc/nginx/conf.d/default.conf
+COPY redislog.conf /etc/nginx/conf.d/redislog.conf
 COPY upstream.conf /etc/nginx/conf.d/upstream.conf
 
 COPY locations.conf /etc/nginx/common/locations.conf
@@ -19,7 +20,6 @@ COPY wpcommon.conf /etc/nginx/common/wpcommon.conf
 COPY proxy.conf /etc/nginx/common/proxy.conf
 
 COPY redis.conf /etc/nginx/common/redis.conf
-COPY redislog.conf /etc/nginx/common/redislog.conf
 
 COPY wpfc.conf /etc/nginx/common/wpfc.conf
 COPY fastcgi.conf /etc/nginx/common/fastcgi.conf

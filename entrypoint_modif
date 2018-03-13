@@ -65,11 +65,8 @@ if [ "$1" == nginx ]; then
     if [ "${CACHE}" == "redis" ]; then
         grep -qF 'include common/redis.conf;' /etc/nginx/conf.d/default.conf || \
         sed -i '/^}/i\    include common/redis.conf;' /etc/nginx/conf.d/default.conf
-        grep -qF 'include common/redislog.conf;' /etc/nginx/conf.d/default.conf || \
-        sed -i '/^}/i\    include common/redislog.conf;' /etc/nginx/conf.d/default.conf
     else
         sed -i '/include commom\/redis.conf;/d' /etc/nginx/conf.d/default.conf
-        sed -i '/include commom\/redislog.conf;/d' /etc/nginx/conf.d/default.conf
     fi
 
     if [ "${CACHE}" == "none" ]; then
