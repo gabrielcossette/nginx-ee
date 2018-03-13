@@ -1,10 +1,16 @@
+# Environment Variables
+
+* `POST_MAX_SIZE`: Sets max size of post data allowed. Also affects file uploads (defaults to `64m`).
+* `BEHIND_PROXY`: Set to `true` if this container is behind a reverse proxy (defaults to `false` unless `VIRTUAL_HOST` environment variable is set).
+* `REAL_IP_HEADER`: Defines the request header that will be used to obtain the real client IP when `BEHIND_PROXY` is set to `true` (defaults to `X-Forwarded-For`).
+* `REAL_IP_FROM`: Defines trusted addresses to obtain the real client IP when `BEHIND_PROXY` is set to `true` (defaults to `172.16.0.0/12`).
+* `WP_CONTAINER_NAME`: Defines your Wordpress (PHP-FPM) container's name aka fastcgi_pass (defaults to `wordpress`).
+
 # Nginx-EE 
 
 Compile and install the latest nginx release with EasyEngine
 
-
 ![nginx-ee](https://raw.githubusercontent.com/VirtuBox/nginx-ee/master/nginx-ee.png)
-
 
 -----
 ## Features
@@ -33,36 +39,6 @@ Nginx current release : **v1.13.9**
 * naxsi WAF (optional)
 -----
 
-## Compatibility
-
-* Ubuntu 16.04 LTS
-* Debian 8 Jessie 
-
-----
-
-## Requirements
-* Nginx already installed by EasyEngine 
-
------
-
-## Usage
-
-```
-bash <(wget -O - https://raw.githubusercontent.com/VirtuBox/nginx-ee/master/nginx-build.sh)
-```
------
-
 ##  Nginx configuration 
 
 * [Wiki](https://github.com/VirtuBox/nginx-ee/wiki/)
-
------
-## Roadmap
-* add nginx configuration examples
-* add nginx stable release
-
-Published by <a href="https://virtubox.net" title="VirtuBox">VirtuBox</a>
-
-
-
-
