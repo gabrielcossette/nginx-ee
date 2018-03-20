@@ -41,7 +41,7 @@ if [ "$1" == nginx ]; then
     sed -i 's/upload_max_filesize *= *[0-9]\+[kKmMgG]\?/upload_max_filesize='"${POST_MAX_SIZE}"'/' /etc/nginx/common/redis.conf
     sed -i 's/post_max_size *= *[0-9]\+[kKmMgG]\?/post_max_size='"${POST_MAX_SIZE}"'/' /etc/nginx/common/redis.conf
     
-    sed -i 's/server wordpress/server '"$(escape_sed "${WP_CONTAINER_NAME}")"'/' /etc/nginx/conf.d/upstream.conf
+    sed -i 's/server changeme/server '"$(escape_sed "${WP_CONTAINER_NAME}")"'/' /etc/nginx/conf.d/upstream.conf
 
     if [ "${BEHIND_PROXY}" == "true" ]; then
         sed -i 's/real_ip_header .*;/real_ip_header '"$(escape_sed "${REAL_IP_HEADER}")"';/' /etc/nginx/common/proxy.conf

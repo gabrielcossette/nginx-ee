@@ -1,5 +1,5 @@
---- docker-entrypoint.sh	2018-03-12 23:05:49.415077121 -0400
-+++ entrypoint_modif	2018-03-12 23:05:03.311334666 -0400
+--- docker-entrypoint.sh	2018-03-19 22:10:08.745769890 -0400
++++ entrypoint_modif	2018-03-19 22:09:07.378128898 -0400
 @@ -28,22 +28,55 @@
      : "${REAL_IP_HEADER:=X-Forwarded-For}"
      : "${REAL_IP_FROM:=172.17.0.0/16}"
@@ -20,7 +20,7 @@
 +    sed -i 's/upload_max_filesize *= *[0-9]\+[kKmMgG]\?/upload_max_filesize='"${POST_MAX_SIZE}"'/' /etc/nginx/common/redis.conf
 +    sed -i 's/post_max_size *= *[0-9]\+[kKmMgG]\?/post_max_size='"${POST_MAX_SIZE}"'/' /etc/nginx/common/redis.conf
 +    
-+    sed -i 's/server wordpress/server '"$(escape_sed "${WP_CONTAINER_NAME}")"'/' /etc/nginx/conf.d/upstream.conf
++    sed -i 's/server changeme/server '"$(escape_sed "${WP_CONTAINER_NAME}")"'/' /etc/nginx/conf.d/upstream.conf
  
      if [ "${BEHIND_PROXY}" == "true" ]; then
 -        sed -i 's/real_ip_header .*;/real_ip_header '"$(escape_sed "${REAL_IP_HEADER}")"';/' /etc/nginx/global/proxy.conf
