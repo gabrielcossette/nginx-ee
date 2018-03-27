@@ -1,6 +1,6 @@
---- docker-entrypoint.sh	2018-03-19 22:10:08.745769890 -0400
-+++ entrypoint_modif	2018-03-19 22:09:07.378128898 -0400
-@@ -28,22 +28,55 @@
+--- docker-entrypoint.sh	2018-03-26 21:59:18.568966224 -0400
++++ entrypoint_modif	2018-03-26 21:56:45.289735753 -0400
+@@ -28,22 +28,52 @@
      : "${REAL_IP_HEADER:=X-Forwarded-For}"
      : "${REAL_IP_FROM:=172.17.0.0/16}"
      : "${WP_CONTAINER_NAME:=wordpress}"
@@ -38,12 +38,9 @@
 +    if [ "${CACHE}" == "fastcgi" ]; then
 +        grep -qF 'include common/wpfc.conf;' /etc/nginx/conf.d/default.conf || \
 +        sed -i '/^}/i\    include common/wpfc.conf;' /etc/nginx/conf.d/default.conf
-+        grep -qF 'include common/fastcgi.conf;' /etc/nginx/conf.d/default.conf || \
-+        sed -i '/^}/i\    include common/fastcgi.conf;' /etc/nginx/conf.d/default.conf
      else
 -        sed -i '/include global\/proxy.conf;/d' /etc/nginx/conf.d/default.conf
 +        sed -i '/include commom\/wpfc.conf;/d' /etc/nginx/conf.d/default.conf
-+        sed -i '/include commom\/fastcgi.conf;/d' /etc/nginx/conf.d/default.conf
      fi
 +
 +    if [ "${CACHE}" == "redis" ]; then

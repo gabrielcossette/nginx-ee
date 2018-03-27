@@ -312,3 +312,5 @@ echo -e "       ${CGREEN}Nginx ee was compiled successfully !${CEND}"
 echo ""
 echo "       Installation log : /tmp/nginx-ee.log"
 echo ""
+
+rm -rf /usr/local/src/*
