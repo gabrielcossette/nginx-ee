@@ -26,10 +26,7 @@ COPY wpfc.conf /etc/nginx/common/wpfc.conf
 
 COPY wordpress.conf /etc/nginx/common/wordpress.conf
 
-COPY docker-entrypoint.sh /entrypoint.sh
-
-COPY entrypoint.patch ./
-RUN patch /entrypoint.sh entrypoint.patch && rm entrypoint.patch
+ADD entrypoint.sh entrypoint.sh
 
 RUN mkdir -p /var/lib/nginx/body
 
